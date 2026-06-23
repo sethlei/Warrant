@@ -32,6 +32,8 @@ Outcome: STILL JUDGMENT: Claim cannot be fully verified because leaf 3 lands on 
 
 This is an actionable plan. You can find the gap in your reasoning, and choose to fix it. Or, if your plan yields a kill, then it's back to the drawing board.
 
+Note: there is a bundled Claude skill if you want to use an agent to do this work. However, the methodology is general enough that a human can do it.
+
 ## When to use
 I like to use this in a few places. First, after I've spec'd an outline of something (code, math, a paper), I run it immediately. The easiest place to detach oneself from an idea is before you've made a deep investment. It also shows where holes in your logic are before you write the thing.
 
