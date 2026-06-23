@@ -1,0 +1,70 @@
+// two-axes-schematic.dot
+// The verification graph (HORIZONTAL = soundness) with the disprove ladder
+// (VERTICAL = variance) hanging off a single fuzzy leaf.
+// Render:  dot -Tsvg two-axes-schematic.dot -o two-axes-schematic.svg
+//
+// Soundness cells (leaf color):
+//   SOUND   (H,H) green   — decidable both ways (permutation-null, exhaustive enum, type guarantee)
+//   PARTIAL (L,H) blue    — certifies DEATH only (a failing test is real; a green suite never certifies)
+//   WITNESS (H,L) tan     — certifies PASS only (a found witness; absence proves nothing unless exhaustive)
+//   FUZZY   (L,L) red     — a judgment; no decidable checker either way
+
+digraph verification {
+  rankdir = BT;                       // claim on top, leaves at the bottom
+  fontname = "Helvetica";
+  node  [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=10, color="#888888"];
+  edge  [fontname="Helvetica", fontsize=9, color="#555555", arrowsize=0.7];
+
+  // ---------- HORIZONTAL AXIS: the claim decomposed into a graph ----------
+  claim [label="CLAIM\n(load-bearing — burden of proof ELECTED)",
+         shape=box, style="filled,bold", fillcolor="#222222", fontcolor="white"];
+
+  faith [label="root faithfulness leaf\n(does the decomposition encode\nthe claim? — usually FUZZY)",
+         fillcolor="#f0c9c9", fontsize=9];
+
+  AND  [label="AND\nPASS = min(s_pass)  ·  DEATH = max(died s_death)", shape=box, fillcolor="#e8e8e8"];
+  OR   [label="OR\nPASS = max(s_pass)  ·  DEATH = min(s_death)", shape=box, fillcolor="#e8e8e8"];
+
+  L1 [label="leaf: permutation-null\nSOUND  (H,H)",  fillcolor="#bfe3bf"];
+  L2 [label="leaf: property test\nPARTIAL  (L,H)",   fillcolor="#cfe0f0"];
+  L3a[label="alt A: existence/witness\nWITNESS  (H,L)", fillcolor="#f0e6c0"];
+  L3b[label="alt B: bounded model-check\nSOUND  (H,H)",  fillcolor="#bfe3bf"];
+  clo[label="closure leaf:\n'are the alternatives exhaustive?'\nFUZZY  (L,L)", fillcolor="#f0c9c9", fontsize=9];
+  L4 [label="leaf: 'is this the binding constraint?'\nFUZZY  (L,L)", fillcolor="#f0c9c9"];
+
+  // edges = 'rests on'
+  AND  -> claim;
+  faith-> claim [style=dashed, label="composes:\nmin(antecedent, edge)"];
+  L1   -> AND;
+  L2   -> AND;
+  OR   -> AND;
+  L4   -> AND;
+  L3a  -> OR;
+  L3b  -> OR;
+  clo  -> OR [style=dashed, label="required"];
+
+  // ---------- VERTICAL AXIS: the disprove ladder on the FUZZY leaf L4 ----------
+  // variance reduction only — the leaf stays (L,L); more independent judges ≠ more sound.
+  subgraph cluster_ladder {
+    label = "DISPROVE LADDER (vertical = variance)\nstacks by consensus/escalation — NOT min/max";
+    labelloc = "b";
+    fontsize = 9; color="#bbbbbb"; style=dashed;
+    node [shape=box, style="rounded,filled", fillcolor="#faf3f3", fontsize=9];
+    r1 [label="generator"];
+    r2 [label="independent reviewer\n(external, not blind)"];
+    r3 [label="fresh clean instance"];
+    r4 [label="cross-lineage checker\n(breaks shared priors)"];
+    r5 [label="human + experiment*"];
+    r1 -> r2 -> r3 -> r4 -> r5 [color="#aa6666", style=dashed, constraint=false];
+  }
+  L4 -> r1 [color="#aa6666", style=dashed, label="no sound checker\n→ climb the ladder"];
+
+  note [shape=note, fillcolor="#fffbe6",
+        label="* an EXPERIMENT is a CHECKER, not a rung:\nit moves L4's cell L→H (horizontal), it does not\nadd a vote (vertical). Keep human judgment on the\nladder; lift experiment onto the graph."];
+  note -> r5 [style=invis];
+
+  // ---------- legend ----------
+  legend [shape=box, style="filled", fillcolor="#f7f7f7", fontsize=9,
+          label="leaves stack by min/max on (s_pass, s_death)  →  SOUNDNESS\ngraders stack by consensus/escalation  →  VARIANCE\nthe two never cross — that refusal IS the composition working"];
+  { rank=sink; legend; }
+}

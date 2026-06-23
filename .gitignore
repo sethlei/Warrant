@@ -1,0 +1,12 @@
+# editor / OS
+*.swp
+.*.swp
+.DS_Store
+
+# python
+__pycache__/
+*.pyc
+
+# lean build artifacts (sources, lakefile, manifest are tracked; the build dir is not)
+lean/.lake/
+.lake/
