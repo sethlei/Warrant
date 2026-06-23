@@ -28,8 +28,7 @@ A note about claim strength: Dr. John Doe is probably not a very reputable sourc
 Following the algebra through the claim graph yields an outcome. It may look like:
 
 "Your claim: Pepperoni pizza is better than pineapple and ham.
-Outcome: STILL JUDGMENT: Claim cannot be fully verified because leaf 3 lands on STILL JUDGMENT
-"
+Outcome: STILL JUDGMENT: Claim cannot be fully verified because leaf 3 lands on STILL JUDGMENT"
 
 This is an actionable plan. You can find the gap in your reasoning, and choose to fix it. Or, if your plan yields a kill, then it's back to the drawing board.
 
@@ -49,9 +48,9 @@ We include a verification of the graph logic, since it would be ironic if we omi
 Note: we stop at calling it a sound implementation of the desired work. It could be SOUND/SOUND for both halves of the check. In my opinion, it is. But, that last rung is left open for you to determine, since the final rung that takes it from “tested by multiple LLMs with different lineages, Lean and TLA+ verified” to “you say it matches” requires your judgment call.
 
 ## Pick the right tools
-Lean or Coq for math. -- This repo has Lean which verifies all N nodes.
-Test cases / TLA+ for code -- this repo has both, Python checked up to node arity 3, TLA+ up to node arity 8.
-Your brain, the debate club, and whoever else you can rope in for papers.
+1. Lean or Coq for math. -- This repo has Lean which verifies all N nodes.
+2. Test cases / TLA+ for code -- this repo has both, Python checked up to node arity 3, TLA+ up to node arity 8.
+3. Your brain, the debate club, and whoever else you can rope in for papers.
 
 We've included some examples where appropriate. If your field of application has a formal verification method, we recommend using that when verifying claims. For example, if you're making a claim about downforce on an F1 car, you probably want computational fluid dynamics and a wind-tunnel.
 
