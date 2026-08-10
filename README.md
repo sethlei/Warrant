@@ -1,5 +1,12 @@
 # Warrant
 
+For the skill itself, see [skill/warrant/SKILL.md](https://github.com/sethlei/Warrant/skill/warrant/SKILL.md)
+
+Example cases are in [cases](https://github.com/sethlei/Warrant/tree/main/cases)
+
+See [lean]([url](https://github.com/sethlei/Warrant/tree/main/lean)) for the Lean verification of the composition logic
+
+
 ## You made a claim, or wrote some code
 It's your idea. You like it. But is it right? How do you know?
 
