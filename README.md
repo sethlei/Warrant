@@ -6,6 +6,7 @@ Example cases are in [cases](https://github.com/sethlei/Warrant/tree/main/cases)
 
 See [lean](https://github.com/sethlei/Warrant/tree/main/lean) for the Lean verification of the composition logic
 
+For using Warrant when performing novel research, you will need more than just this skill. See [Locke](https://github.com/sethlei/Locke) for a compatible fact-checking implementation.
 
 ## You made a claim, or wrote some code
 It's your idea. You like it. But is it right? How do you know?
