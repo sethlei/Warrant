@@ -4,7 +4,7 @@ For the skill itself, see [skill/warrant/SKILL.md](https://github.com/sethlei/Wa
 
 Example cases are in [cases](https://github.com/sethlei/Warrant/tree/main/cases)
 
-See [lean]([url](https://github.com/sethlei/Warrant/tree/main/lean)) for the Lean verification of the composition logic
+See [lean](https://github.com/sethlei/Warrant/tree/main/lean) for the Lean verification of the composition logic
 
 
 ## You made a claim, or wrote some code
