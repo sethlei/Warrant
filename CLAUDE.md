@@ -65,9 +65,10 @@ lake build             # clean exit + the #print axioms lines = verified
 ```
 
 A good build prints only `[propext, Classical.choice, Quot.sound]` (or no axioms) for each
-theorem, never `sorryAx`. `lean/.lake/` is gitignored. The last recorded build attempt is in
-`lean/BUILD_RECEIPT.md`. In a sandbox, elan needs to reach `release.lean-lang.org` to fetch the
-toolchain.
+theorem, never `sorryAx`. `lean/.lake/` is gitignored. The last recorded build is in
+`lean/BUILD_RECEIPT.md`: it succeeded, taking about 3 minutes from a cold start, mostly on the
+cache download. In a network-restricted sandbox, a cold build needed `release(s).lean-lang.org`
+(toolchain), `github.com` (Mathlib and its dependencies) and the Mathlib cache host.
 
 **Python** (`code/`, stdlib only; all four were run from the repo root and passed):
 
